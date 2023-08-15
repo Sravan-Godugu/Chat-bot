@@ -1,0 +1,43 @@
+import random
+
+jokes = [
+    "Why don't scientists trust atoms? Because they make up everything!",
+    "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+    "Parallel lines have so much in common. It's a shame they'll never meet!",
+    # ... more jokes ...
+]
+
+responses = {
+    "hello": ["Hi there!", "Hello!", "Hey!"],
+    "how are you": ["I'm just a chatbot!", "I'm good, thanks!", "I don't have feelings, but I'm here to help."],
+    "bye": ["Goodbye!", "Have a great day!", "See you later!"],
+    "what's your name": ["I'm a chatbot.", "Call me ChatBot.", "I don't have a name, but you can call me ChatBot."],
+    "help": ["How can I assist you?", "What do you need help with?", "I'm here to answer your questions."],
+    "weather": ["I'm not sure about the weather. You can check a weather website.", "I don't have real-time weather information."],
+    "age": ["I'm a virtual assistant, so I don't have an age.", "I don't experience time, so I don't have an age."],
+    "joke": ["Sure, here's a joke: Why don't scientists trust atoms? Because they make up everything!", "Why did the scarecrow win an award? Because he was outstanding in his field!"],
+    "default": ["I'm sorry, I don't understand.", "Could you please rephrase that?", "I'm not programmed to answer that."],
+}
+
+def tell_joke():
+    return random.choice(jokes)
+
+def get_response(user_input):
+    user_input = user_input.lower()
+    response = responses.get(user_input, responses["default"])
+    return random.choice(response)
+
+print("Chatbot: Hi there! I'm your assistance chatbot.")
+print("Chatbot: If you want a joke, just ask. If you need assistance, feel free to ask questions.")
+
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "bye":
+        print("Chatbot: Goodbye!")
+        break
+    elif "joke" in user_input.lower():
+        joke = tell_joke()
+        print("Chatbot (Joke):", joke)
+    else:
+        response = get_response(user_input)
+        print("Chatbot:", response)
